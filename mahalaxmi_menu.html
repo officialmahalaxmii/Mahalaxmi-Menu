@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahalaxmi Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5C518;
+    --gold-light: #FFE066;
+    --gold-dark: #C9960C;
+    --gold-pale: #FFF3B0;
+    --red: #8B0000;
+    --red-mid: #B22222;
+    --red-bright: #CC1111;
+    --cream: #FFF8E7;
+    --black: #1A0000;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--red);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(200,10,10,0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(180,5,5,0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(140,0,0,0.2) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 16px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    padding: 40px 20px 30px;
+    position: relative;
+  }
+
+  .header-border-top {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+    margin-bottom: 24px;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+
+  .logo-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 12px;
+    position: relative;
+  }
+
+  .logo-icon svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 12px rgba(245,197,24,0.8));
+  }
+
+  .shop-name {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: clamp(28px, 6vw, 52px);
+    font-weight: 900;
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 4px;
+    text-shadow: none;
+    filter: drop-shadow(0 2px 8px rgba(200,150,12,0.5));
+    animation: glow-name 3s ease-in-out infinite;
+  }
+
+  @keyframes glow-name {
+    0%, 100% { filter: drop-shadow(0 2px 8px rgba(200,150,12,0.4)); }
+    50% { filter: drop-shadow(0 2px 20px rgba(255,224,102,0.9)); }
+  }
+
+  .tagline {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--gold-pale);
+    margin-top: 6px;
+    opacity: 0.85;
+    text-transform: uppercase;
+  }
+
+  .header-border-bottom {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+    margin-top: 20px;
+  }
+
+  .ornament {
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 8px;
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section {
+    margin: 36px 0 0;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  .section-title h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(14px, 3.5vw, 20px);
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 50%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    padding: 8px 30px;
+    border: 1px solid rgba(245,197,24,0.4);
+    border-left: none; border-right: none;
+    position: relative;
+  }
+
+  .section-title h2::before,
+  .section-title h2::after {
+    content: '✦';
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    color: var(--gold);
+    -webkit-text-fill-color: var(--gold);
+    font-size: 12px;
+  }
+  .section-title h2::before { left: 8px; }
+  .section-title h2::after { right: 8px; }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,197,24,0.5), transparent);
+    margin: 6px 0;
+  }
+
+  /* ── MENU GRID ── */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 16px;
+    border-bottom: 1px solid rgba(245,197,24,0.12);
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-item:hover {
+    background: rgba(245,197,24,0.08);
+  }
+
+  .menu-item:hover::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+  }
+
+  .item-name {
+    font-size: clamp(13px, 2.5vw, 16px);
+    color: var(--cream);
+    font-weight: 400;
+    flex: 1;
+    padding-right: 12px;
+  }
+
+  .item-note {
+    font-size: 11px;
+    color: rgba(255,243,176,0.6);
+    font-style: italic;
+    margin-left: 4px;
+  }
+
+  .item-price {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(12px, 2.2vw, 15px);
+    font-weight: 600;
+    color: var(--gold);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .item-price .rupee {
+    font-size: 10px;
+    opacity: 0.8;
+  }
+
+  .price-note {
+    font-size: 10px;
+    color: rgba(245,197,24,0.6);
+    font-style: italic;
+  }
+
+  /* Two-column for some sections */
+  .menu-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+  }
+
+  @media (max-width: 500px) {
+    .menu-grid-2col { grid-template-columns: 1fr; }
+  }
+
+  /* Subsection label */
+  .sub-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    padding: 12px 16px 4px;
+    opacity: 0.9;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 24px;
+    border-top: 1px solid rgba(245,197,24,0.3);
+  }
+
+  .footer-ornament {
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 10px;
+    opacity: 0.6;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .footer-text {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(245,197,24,0.5);
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+
+  /* stars decoration */
+  .stars-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 4px 0;
+    color: var(--gold-dark);
+    font-size: 12px;
+    opacity: 0.6;
+  }
+
+  .veg-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #2ecc71;
+    border: 1px solid #27ae60;
+    margin-right: 5px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-border-top"></div>
+    <div class="logo-icon">
+      <svg viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="goldG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFE066"/>
+            <stop offset="50%" stop-color="#F5C518"/>
+            <stop offset="100%" stop-color="#C9960C"/>
+          </linearGradient>
+        </defs>
+        <!-- banner shape -->
+        <path d="M5 10 Q50 2 95 10 L92 58 Q50 68 8 58 Z" fill="url(#goldG)" stroke="#C9960C" stroke-width="1.5"/>
+        <path d="M8 58 Q15 72 50 78 Q85 72 92 58" fill="#C9960C" opacity="0.5"/>
+        <!-- crescent -->
+        <path d="M32 38 Q50 52 68 38 Q58 28 50 28 Q42 28 32 38Z" fill="#8B0000"/>
+        <!-- cherry/circle -->
+        <circle cx="50" cy="22" r="9" fill="#CC1111"/>
+        <circle cx="52" cy="19" r="3" fill="rgba(255,255,255,0.3)"/>
+        <!-- stem -->
+        <path d="M50 13 Q53 8 56 10" stroke="#C9960C" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="shop-name">Mahalaxmi</div>
+    <div class="tagline">Chinese · Momos · Pav Bhaji · Dosa</div>
+    <div class="stars-row">✦ ✦ ✦ ✦ ✦</div>
+    <div class="header-border-bottom"></div>
+    <div class="ornament">❧ Pure Veg ❧</div>
+  </div>
+
+  <!-- SOUPS -->
+  <div class="section">
+    <div class="section-title"><h2>Soups</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <span class="veg-dot"></span>
+        <span class="item-name">Tomato Soup</span>
+        <span class="item-price">Full <span class="rupee">₹</span>80 / Half <span class="rupee">₹</span>50</span>
+      </div>
+      <div class="menu-item">
+        <span class="veg-dot"></span>
+        <span class="item-name">Manchow Soup</span>
+        <span class="item-price">—</span>
+      </div>
+      <div class="menu-item">
+        <span class="veg-dot"></span>
+        <span class="item-name">Hot & Sour Soup</span>
+        <span class="item-price">—</span>
+      </div>
+      <div class="menu-item">
+        <span class="veg-dot"></span>
+        <span class="item-name">Sweet Corn Soup</span>
+        <span class="item-price">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STARTERS -->
+  <div class="section">
+    <div class="section-title"><h2>Starters</h2></div>
+    <div class="sub-label">Paneer Starters</div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Chilli Fry</span><span class="item-price"><span class="rupee">₹</span>150</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Chilli Gravy</span><span class="item-price"><span class="rupee">₹</span>170</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer 65</span><span class="item-price"><span class="rupee">₹</span>170</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Crispy</span><span class="item-price"><span class="rupee">₹</span>170</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Lemon Paneer</span><span class="item-price"><span class="rupee">₹</span>170</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Ginger Paneer</span><span class="item-price"><span class="rupee">₹</span>170</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Dragon Paneer</span><span class="item-price"><span class="rupee">₹</span>200</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Manchurian</span><span class="item-price"><span class="rupee">₹</span>160</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Kung Fu Paneer</span><span class="item-price"><span class="rupee">₹</span>200</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Hot Garlic</span><span class="item-price"><span class="rupee">₹</span>170</span></div>
+    </div>
+
+    <div class="sub-label">Soyabin Starters</div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Soyabin Chilli</span><span class="item-price">Full <span class="rupee">₹</span>80 / Half <span class="rupee">₹</span>50</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Soyabin Crispy</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+    </div>
+
+    <div class="sub-label">Veg Starters</div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Manchurian Fry</span><span class="item-price">Full <span class="rupee">₹</span>80 / Half <span class="rupee">₹</span>50</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Manchurian Gravy</span><span class="item-price">Full <span class="rupee">₹</span>80 / Half <span class="rupee">₹</span>50</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg 65</span><span class="item-price"><span class="rupee">₹</span>130</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Corn Crispy</span><span class="item-price"><span class="rupee">₹</span>130</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Cutlet Chilly</span><span class="item-price"><span class="rupee">₹</span>150</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Corn Ladipop <span class="item-note">(10 pcs)</span></span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Gobi Manchurian</span><span class="item-price"><span class="rupee">₹</span>110</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Mushroom Chilly</span><span class="item-price"><span class="rupee">₹</span>150</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Babycorn Chilly</span><span class="item-price"><span class="rupee">₹</span>150</span></div>
+    </div>
+
+    <div class="sub-label">Potato Starters</div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Chilly Potato</span><span class="item-price"><span class="rupee">₹</span>80</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Honey Chilly Potato</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Chilly Garlic Potato</span><span class="item-price"><span class="rupee">₹</span>90</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">French Fries</span><span class="item-price">Half <span class="rupee">₹</span>50 / Full <span class="rupee">₹</span>80</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Peri-Peri Twister</span><span class="item-price"><span class="rupee">₹</span>50</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Barbeque Potato</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+    </div>
+
+    <div class="sub-label">More Starters</div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Chinesse Bhel</span><span class="item-price"><span class="rupee">₹</span>80</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Crispy Corn</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Spring Roll <span class="item-note">(3 rolls)</span></span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Spring Roll <span class="item-note">(3 rolls)</span></span><span class="item-price"><span class="rupee">₹</span>130</span></div>
+    </div>
+  </div>
+
+  <!-- CHOPSY -->
+  <div class="section">
+    <div class="section-title"><h2>Chopsy</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">American Chopsy</span><span class="item-price"><span class="rupee">₹</span>130</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Chinese Chopsy</span><span class="item-price"><span class="rupee">₹</span>130</span></div>
+    </div>
+  </div>
+
+  <!-- NOODLES -->
+  <div class="section">
+    <div class="section-title"><h2>Noodles</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Noodles</span><span class="item-price">Full <span class="rupee">₹</span>80 / Half <span class="rupee">₹</span>50</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Hakka Noodles</span><span class="item-price"><span class="rupee">₹</span>80 <span class="price-note">(Full)</span></span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Singapore Noodles</span><span class="item-price"><span class="rupee">₹</span>80 <span class="price-note">(Full)</span></span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Hong-Kong Noodles</span><span class="item-price"><span class="rupee">₹</span>90</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Chilly Garlic Noodles</span><span class="item-price"><span class="rupee">₹</span>90</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Schezwan Noodles</span><span class="item-price"><span class="rupee">₹</span>80</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Panstick Noodles</span><span class="item-price"><span class="rupee">₹</span>150</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Manchurian Noodles</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Schezwan Noodles</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Tripple Noodles</span><span class="item-price"><span class="rupee">₹</span>140</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Combination Noodles</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span>
+        <span class="item-name">Spe. Mahalaxmi Noodles <span class="item-note">(Mushroom, Babycorn, Paneer, Exotic Veg)</span></span>
+        <span class="item-price"><span class="rupee">₹</span>150</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RICE -->
+  <div class="section">
+    <div class="section-title"><h2>Rice</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Fried Rice</span><span class="item-price">Full <span class="rupee">₹</span>80 / Half <span class="rupee">₹</span>50</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Schezwan Rice</span><span class="item-price"><span class="rupee">₹</span>80</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Manchurian Rice</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Singapore Rice</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Hong Kong Rice</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Fried Rice</span><span class="item-price"><span class="rupee">₹</span>120</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Mushroom Fried Rice</span><span class="item-price"><span class="rupee">₹</span>110</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Chilly Garlic Fried Rice</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Soyabin Fried Rice</span><span class="item-price"><span class="rupee">₹</span>80</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Tripple Schezwan Fried Rice</span><span class="item-price"><span class="rupee">₹</span>140</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Combination Rice</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+    </div>
+  </div>
+
+  <!-- SIZZLERS -->
+  <div class="section">
+    <div class="section-title"><h2>Sizzlers</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Sizzler</span><span class="item-price"><span class="rupee">₹</span>200</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Sizzler</span><span class="item-price"><span class="rupee">₹</span>200</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Chinese Sizzler</span><span class="item-price"><span class="rupee">₹</span>200</span></div>
+    </div>
+  </div>
+
+  <!-- PLOTTER -->
+  <div class="section">
+    <div class="section-title"><h2>Plotter</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span>
+        <span class="item-name">Chinese Plotter <span class="item-note">(Rice / Noodles / Fried / Manchurian / Soup)</span></span>
+        <span class="item-price"><span class="rupee">₹</span>250</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOMOS -->
+  <div class="section">
+    <div class="section-title"><h2>Momos</h2></div>
+    <div class="sub-label">Veg Momos</div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Steam Momos</span><span class="item-price">—</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Steam Fried Momos</span><span class="item-price"><span class="rupee">₹</span>70</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Kurkure Momos</span><span class="item-price">—</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Afghani Momos</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Chilly Momos</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Sweet Chilly Momos</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Dragon Momos</span><span class="item-price">—</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Tandoori Momos</span><span class="item-price">—</span></div>
+    </div>
+
+    <div class="sub-label">Paneer / Cheese / Corn Momos</div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Steam Momos</span><span class="item-price"><span class="rupee">₹</span>60</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Fried Momos</span><span class="item-price"><span class="rupee">₹</span>70</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Kurkure Momos</span><span class="item-price"><span class="rupee">₹</span>80</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Afghani Momos</span><span class="item-price"><span class="rupee">₹</span>130</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Chilly Momos</span><span class="item-price"><span class="rupee">₹</span>120</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Dragon Momos</span><span class="item-price"><span class="rupee">₹</span>130</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Paneer Tandoori Momos</span><span class="item-price">—</span></div>
+    </div>
+  </div>
+
+  <!-- PAV BHAJI -->
+  <div class="section">
+    <div class="section-title"><h2>Pav Bhaji</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Pav Bhaji <span class="item-note">(2 Pav)</span></span><span class="item-price"><span class="rupee">₹</span>60</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Butter Pav Bhaji <span class="item-note">(2 Pav)</span></span><span class="item-price"><span class="rupee">₹</span>70</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Cheese Paneer Pav Bhaji <span class="item-note">(2 Pav)</span></span><span class="item-price"><span class="rupee">₹</span>80</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Pav Extra <span class="item-note">(2 Pav)</span></span><span class="item-price"><span class="rupee">₹</span>10</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Only Bhaji</span><span class="item-price"><span class="rupee">₹</span>250 <span class="price-note">/ kg</span></span></div>
+    </div>
+  </div>
+
+  <!-- TAWA PULAV -->
+  <div class="section">
+    <div class="section-title"><h2>Tawa Pulav</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Tawa Pulav</span><span class="item-price"><span class="rupee">₹</span>70</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Butter Pulav</span><span class="item-price"><span class="rupee">₹</span>80</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Cheese Paneer Pulav</span><span class="item-price"><span class="rupee">₹</span>90</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Jira Rice</span><span class="item-price"><span class="rupee">₹</span>70</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Jain Pulav</span><span class="item-price"><span class="rupee">₹</span>100</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Biryani</span><span class="item-price"><span class="price-note">Per kg</span></span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Veg Pulav</span><span class="item-price"><span class="price-note">Per kg</span></span></div>
+    </div>
+  </div>
+
+  <!-- PAPAD -->
+  <div class="section">
+    <div class="section-title"><h2>Papad</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Udid Papad Fry / Roast</span><span class="item-price"><span class="rupee">₹</span>15</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Udid Masala Fry Papad</span><span class="item-price"><span class="rupee">₹</span>20</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Nagali Masala Papad</span><span class="item-price"><span class="rupee">₹</span>30</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Chinese Times Papad</span><span class="item-price"><span class="rupee">₹</span>30</span></div>
+    </div>
+  </div>
+
+  <!-- DOSA -->
+  <div class="section">
+    <div class="section-title"><h2>Dosa</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Plain Dosa</span><span class="item-price"><span class="rupee">₹</span>30</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Shejwan Masala Dosa</span><span class="item-price"><span class="rupee">₹</span>40</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Mysore Masala Dosa</span><span class="item-price"><span class="rupee">₹</span>50</span></div>
+      <div class="menu-item"><span class="veg-dot"></span><span class="item-name">Cheese Paneer Dosa</span><span class="item-price"><span class="rupee">₹</span>50</span></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-ornament">✦ ✦ ✦</div>
+    <div class="footer-text">Thank you for dining with us · Mahalaxmi</div>
+    <div style="margin-top:8px; color: rgba(245,197,24,0.35); font-size:10px; letter-spacing:2px;">ALL ITEMS ARE PURE VEGETARIAN</div>
+  </div>
+
+</div>
+</body>
+</html>
